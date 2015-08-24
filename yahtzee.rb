@@ -40,8 +40,8 @@ class Game
     while i < 5
       array.push(roll)
       i += 1
-      binding.pry
     end
+    array
   end
 end
 
