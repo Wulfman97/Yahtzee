@@ -2,7 +2,8 @@
 # a. Begin with building the Game class. Inside the Game class, create a roll method. The roll method should randomly create an 
 #array of five numbers with values between 1 and 6. This represents the values on the five dice being rolled.
 #b. After you can successfully roll the five dice. Modify the method so that you can recieve an optional parameter. 
-#The optional parameter should be an array of the dice values that a player chose to keep from the previous roll. Modify the method so that the values passed in are kept and only the remaining dice are rolled.
+#The optional parameter should be an array of the dice values that a player chose to keep from the previous roll. 
+#Modify the method so that the values passed in are kept and only the remaining dice are rolled.
 
 #For example:
           
@@ -20,3 +21,20 @@
 #maximum of three times but they may choose to roll only once or twice if that is what they choose.
 # (For now the turn method should just return the final array that will eventually be scored. We will have to return to this 
 #method and update it once we have created and fleshed out Player and ScoreCard classes.)
+require 'pry'
+#class Game
+
+  def roll
+    #for 5 in range
+    d_1 = [1, 2, 3, 4, 5, 6].sample
+    Array.new.push(d_1)
+binding.pry    
+  end
+
+
+
+#end
+
+puts roll
+  
+
