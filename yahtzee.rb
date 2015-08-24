@@ -23,8 +23,11 @@
 #method and update it once we have created and fleshed out Player and ScoreCard classes.)
 require 'pry'
 class Game
+  
 
-  DICE_SIDES = [1,2,3,4,5,6]
+  end
+
+  DICE_SIDES = [1,2,3,4,5,6]to.a
 
   def initialize
     
@@ -43,9 +46,35 @@ class Game
     end
     array
   end
+  def run_game
+   puts """ WELCOME TO YAHTZEE
+    How many players? """
+    
+  end  
 end
 
 game = Game.new
-puts game.roll_five_times
+
+#players = gets.chomp
+
+####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
+
 
