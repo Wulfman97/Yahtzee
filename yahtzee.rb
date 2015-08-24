@@ -23,18 +23,17 @@
 #method and update it once we have created and fleshed out Player and ScoreCard classes.)
 require 'pry'
 class Game
-  
-
-  end
-
-  DICE_SIDES = [1,2,3,4,5,6]to.a
-
-  def initialize
-    
+  def initialize(name)
+   puts "Welcome, to Yahtzee!"
+   @name = name
+   @turn = 0 
+   # enter scorecard
   end
 
   def roll
-    DICE_SIDES.sample     
+    dice_sides = (1..6).to_a
+    d = dice_sides.sample
+    return d     
   end
 
   def roll_five_times
@@ -45,20 +44,93 @@ class Game
       i += 1
     end
     array
-  end
-  def run_game
-   puts """ WELCOME TO YAHTZEE
-    How many players? """
+    puts "Which numbers whould you like to keep?"
     
-  end  
+  end
 end
-
-game = Game.new
+puts 'type in your first name'
+name = gets.chomp
+game = Game.new(name)
+puts game.roll_five_times
 
 #players = gets.chomp
 
 ####
-
+# 3. Player Class
+# Create a Player class. The Player class should have instance variables that hold the player's name, scorecard and total 
+# score. Initialize the total score to 0 and pass in the player's name. You haven't yet created the ScoreCard class, so you won't 
+# be able to create a scorecard for a player yet.
+# For now, go ahead and create an empty method called calculate_score. Eventually, you will use this method to call on the 
+# ScoreCard associated with the player and score calculate the score for a turn and return the amount of points that were earned 
+# that turn to be added to the player's total score.
+#  4. ScoreCard Class
+#  a. The ScoreCard in Yahtzee is a little complex. Take a moment to examine it and understand how it works. The ScoreCard will 
+#  need an instance variable that is a hash that represents each of the rows on the scorecard. I suggest you organize it similar 
+#  to this:
+# @scorecard = { 
+# upper_section: {
+# aces: 0,
+# twos: 0,
+#   threes: 0,
+#   etc.
+# },
+# lower_section: {
+#    three_of_a_kind: 0,
+# four_of_a_kind: 0,
+#  etc.
+#   }
+# }
+#  ** Notice all the values are initially set to 0.
+# b. Once a row on the scorecard has been chosen, it may not be chosen again. The score on that row will be final. In order to prevent a player from choosing a row twice, add another instance variable that is a hash containing all the possible rows that a player may choose when scoring their turn. This array should be used to present the player with their scoring options. When an option is chosen, the score will be calculated and added to the appropriate part of the @scorecard hash, then the element in the scoring_options hash will be removed from the array. The hash keys should match the @scorecard hash keys so you can use them to reference each other. The values will be different so they can be used to display useful information to the players.
+#   @scoring_options = { 
+#      upper_section: {
+#        aces: 'Total of Aces Only',
+#        twos: 'Total of Twos Only',
+#         threes: 'Total of Threes Only',
+#     etc.
+#   },
+#    lower_section: {
+#      three_of_a_kind: 'Total of all Five Dice',
+#      four_of_a_kind: 'Total of all Five Dice',
+#      etc.
+#           }
+#         }
+#  c. display_options method
+#    Create a method called display_options. This method will display the scoring options available on the player's scorecard from the @scoring_options variable you just created. Display the options in a way that makes it clear that the player should choose one of the key values. For example:
+#      Scoring Options:
+#        Upper Section
+#    option      description
+#  ----------------------------
+#         aces        Total of Aces Only
+#         twos        Total of Twos Only
+#         etc
+#     Lower Section
+#                 option                 description
+#               ---------------------------------------
+#                 three_of_a_kind        Total of Aces Only
+#                 four_of_a_kind         Total of Twos Only
+#                 etc
+#           Choose a scoring option: 
+#         Once you acquire the players scoring option choice, you are going to need to do the appropriate calculation. You are going to build a method for each of the types of scoring options. For now, go ahead and build a case statement that will call the appropriate method.
+#             case player_choice
+#               when 'aces'
+#                 aces(roll)        // this is a method that you are about to create
+#               when 'twos'
+#                 twos(roll)         // this is a method that you are about to create
+#               when 'threes'
+#                 threes(roll)        // this is a method that you are about to create
+#               etc.
+#       d. scorecard rows methods
+#         Create a method called aces. This method is going to count the amount of aces(ones) in the final roll in the turn and return that count to be added to the total score for that player. But now the question arises, 'How do you access the array of rolled dice that you need to score?' That depends on where in your code you execute this method. We will get to that shortly. For now, lets just assume we are passing in the array that we need to score as a parameter for the method. 
+              
+#               Ex. def aces(roll)
+#                     # do stuff here to count the number of aces in the roll array
+#                   end
+#         Repeat this for all of the scoring options (twos, threes, full house, etc). 
+#         *** Note: the logic for each method will be different.
+#         Be sure to test all of the methods to make sure they work correctly before moving on.
+#         These methods should return the score so that we can add it to the total score for the player.```
+# Add Comment Collapse
 
 
 
