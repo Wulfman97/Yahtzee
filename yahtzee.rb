@@ -22,19 +22,30 @@
 # (For now the turn method should just return the final array that will eventually be scored. We will have to return to this 
 #method and update it once we have created and fleshed out Player and ScoreCard classes.)
 require 'pry'
-#class Game
+class Game
 
-  def roll
-    #for 5 in range
-    d_1 = [1, 2, 3, 4, 5, 6].sample
-    Array.new.push(d_1)
-binding.pry    
+  DICE_SIDES = [1,2,3,4,5,6]
+
+  def initialize
+    
   end
 
+  def roll
+    DICE_SIDES.sample     
+  end
 
+  def roll_five_times
+    array = Array.new
+    i = 0
+    while i < 5
+      array.push(roll)
+      i += 1
+      binding.pry
+    end
+  end
+end
 
-#end
-
-puts roll
+game = Game.new
+puts game.roll_five_times
   
 
