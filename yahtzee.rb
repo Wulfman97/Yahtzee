@@ -1,6 +1,3 @@
-# 1. roll Method and Game Class
-# a. Begin with building the Game class. Inside the Game class, create a roll method. The roll method should randomly create an 
-#array of five numbers with values between 1 and 6. This represents the values on the five dice being rolled.
 #b. After you can successfully roll the five dice. Modify the method so that you can recieve an optional parameter. 
 #The optional parameter should be an array of the dice values that a player chose to keep from the previous roll. 
 #Modify the method so that the values passed in are kept and only the remaining dice are rolled.
@@ -20,38 +17,57 @@
 #next roll. Think about the user experience in the terminal when you are writing this method. *** Remember that the player can roll a 
 #maximum of three times but they may choose to roll only once or twice if that is what they choose.
 # (For now the turn method should just return the final array that will eventually be scored. We will have to return to this 
-#method and update it once we have created and fleshed out Player and ScoreCard classes.)
 require 'pry'
 class Game
-  def initialize(name)
-   puts "Welcome, to Yahtzee!"
+ def initialize(name)
+   puts "Welcome, to Yahtzee, #{name}!"
    @name = name
    @turn = 0 
    # enter scorecard
-  end
+ end
 
-  def roll
-    dice_sides = (1..6).to_a
-    d = dice_sides.sample
-    return d     
-  end
+ def roll
+  dice_sides = (1..6).to_a
+  d = dice_sides.sample
+  return d    
+ end
 
-  def roll_five_times
-    array = Array.new
-    i = 0
-    while i < 5
-      array.push(roll)
-      i += 1
-    end
-    array
-    puts "Which numbers whould you like to keep?"
-    
-  end
+ def roll_five_times
+   array = Array.new
+   # assignes 0 to variable i
+   i = 0
+   while i < @number_of_dice
+    array.push(roll)
+    i += 1
+   end
+   puts array
+   puts "What numbers would you like to keep? Enter numbers seperated by a \",\" , no spaces."
+   keepers = gets.chomp.to_s
+   @keepers_array = keepers.split(",")
+   #roll again, but only 5 - keepers_array.length timesd 
+ end
+
+ def turn
+   @roll_count = 0
+   # does @roll_count equal 0?
+   #this needs to loop
+   @number_of_dice = 5
+   while @roll_count < 3
+     roll_five_times
+     @roll_count += 1
+     @number_of_dice -= @keepers_array.length 
+     
+
+   end
+   puts "DONE"
+ end
+
 end
-puts 'type in your first name'
+
+puts 'Please type in your first name.'
 name = gets.chomp
 game = Game.new(name)
-puts game.roll_five_times
+game.turn
 
 #players = gets.chomp
 
